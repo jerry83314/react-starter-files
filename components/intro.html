@@ -9,7 +9,22 @@
   const App = () => {
     return (
       <>
-        React
+        <Header imgUrl="https://www.savemore.com.tw/wp-content/uploads/2018/10/vvv1.jpg" />
+        <div class="row">
+          <div class="col-md-4">
+            <Sidebar list={['小明', '杰倫', '漂亮阿姨']}/>
+          </div>
+          <div class="col-md-8">
+            <ChartJs data={[{ label: '小明', value: 1000 },
+              { label: '杰倫', value: 10000 },
+              { label: '漂亮阿姨', value: 3000 },
+              { label: '卡斯伯', value: 2500 },
+            ]} />
+          </div>
+        </div>
+        <Footer>
+          這是一段文字
+        </Footer>
       </>
     );
   };
