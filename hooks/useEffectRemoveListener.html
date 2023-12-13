@@ -22,8 +22,8 @@ const SearchBox = ({onSearchHandler, filterString}) => {
   return <div>
     <label htmlFor="filter">搜尋</label>
     <input type="text" id="filter" className="form-control"
-      value={filterString}
-      onChange={onSearchHandler}
+      defaultValue={filterString}
+      onKeyPress={onSearchHandler}
     />
   </div>
 }
@@ -32,9 +32,13 @@ let currentPage = 1;
 const App = () => {
   const [filterString, setFilterString] = useState('animal');
   const [jsonData, setJsonData] = useState([]);
+
+  // #1 搜尋調整 keypress(Enter)
   const onSearchHandler = (e) => {
-    setFilterString(e.target.value);
-  }
+    if (e.key === 'Enter') {
+      setFilterString(e.target.value);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -47,7 +51,7 @@ const App = () => {
         console.log(error);
       }
     })();
-  }, [])
+  }, [filterString]);
   
   return (<div>
     <SearchBox onSearchHandler={onSearchHandler} filterString={filterString} />
